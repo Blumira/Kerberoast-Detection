@@ -1,5 +1,5 @@
 
-Automation for creating a Kerberos service account Honey credential:
+Automation for creating a Kerberos service account honey credential:
 
 Threat actors can abuse the kerberos protocol to recover passwords related to service accounts using a tactic called Kerberoasting
 
