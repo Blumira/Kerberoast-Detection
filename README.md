@@ -20,13 +20,13 @@ Requirements:
     
 		- An alerting mechanism (like Blumira clould SIEM) that will generate alerts related to matches of the following
     
-		- Event ID: 4769
+			- Event ID: 4769
     
-		- Encryption type: 0x17
+			- Encryption type: 0x17
     
-		- Ticket options: 0x40810000
+			- Ticket options: 0x40810000
     
-		- SPN Name: <Name of your honeycred / SPN name>
+			- SPN Name: <Name of your honeycred / SPN name>
 
 Usage:
 	
