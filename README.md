@@ -11,27 +11,20 @@ the SPN.
 In order to avoid false positive detections you can create a service account honeypot to detect Kerberoasting:
 
 Requirements:
-
-		- Generate SPN artifacts for the purpose of detecting kerberoasting in otherwise noisy enviroments
+- Generate SPN artifacts for the purpose of detecting kerberoasting in otherwise noisy enviroments
+	
+- This powershell script should be executed by a user account with privledges for creating Active directory accounts and SPN's
+	
+- Auditing of Kerberos Service Ticket Operations must be enabled
     
-		- This powershell script should be executed by a user account with privledges for creating Active directory accounts and SPN's
-    
-		- Auditing of Kerberos Service Ticket Operations must be enabled
-    
-		- An alerting mechanism (like Blumira clould SIEM) that will generate alerts related to matches of the following
-    
-			- Event ID: 4769
-    
-			- Encryption type: 0x17
-    
-			- Ticket options: 0x40810000
-    
-			- SPN Name: <Name of your honeycred / SPN name>
+- An alerting mechanism (like Blumira clould SIEM) that will generate alerts related to matches of the following
+    - Event ID: 4769
+    - Encryption type: 0x17
+    - Ticket options: 0x40810000
+    - SPN Name: <Name of your honeycred / SPN name>
 
 Usage:
 	
   From an administrative powershell command prompt 
   
   > .\DOGEMIRA.ps1
-
-
