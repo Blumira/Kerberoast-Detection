@@ -30,12 +30,8 @@ Requirements:
 
 Usage:
 	
-  From an administrative powershell command prompt > .\DOGEMIRA.ps1
+  From an administrative powershell command prompt 
+  
+  > .\DOGEMIRA.ps1
 
- Version: 1.0
- 
- Author: Bill Reyor, Blumira
- 
- https://www.blumira.com
- 
- Twitter: @blumirasec
+
