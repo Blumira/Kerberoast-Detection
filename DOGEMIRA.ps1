@@ -35,7 +35,7 @@
 # Twitter: @blumirasec
 
 
-import-module ActiveDircetory
+import-module ActiveDirectory
 Add-Type -AssemblyName System.Web
 
 #Select a username and store in $user
