@@ -11,7 +11,7 @@ the SPN.
 In order to avoid false positive detections you can create a service account honeypot to detect Kerberoasting:
 
 Requirements:
-- Generate SPN artifacts for the purpose of detecting kerberoasting in otherwise noisy enviroments
+- Generate SPN artifacts for the purpose of detecting kerberoasting in otherwise noisy environments
 	
 - This powershell script should be executed by a user account with privledges for creating Active directory accounts and SPN's
 	
