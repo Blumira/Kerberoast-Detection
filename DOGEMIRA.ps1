@@ -43,6 +43,11 @@ $uprefix = "DefaultAppPool_"
 $userrnd = -join ((65..90) + (97..122) | Get-Random -Count 5 | % {[char]$_}) 
 $user = $uprefix + $userrnd
 
+#Select a 2nd username and store in $user2
+$uprefix2 = "Winnie_"
+$userrnd2 = -join ((65..90) + (97..122) | Get-Random -Count 5 | % {[char]$_}) 
+$user2 = $uprefix2 + $userrnd2 
+
 #Create SPN Name - store in $spnb
 $sprefix = "IIS_IUSRSB_"
 $SPNrnd = -join ((65..90) + (97..122) | Get-Random -Count 5 | % {[char]$_}) 
@@ -65,3 +70,6 @@ $secPw = ConvertTo-SecureString -String $password -AsPlainText -Force
 New-ADUser -SamAccountName $user -Name $user -AccountPassword $secPw -Enabled 1
 $Command = "setspn -A " + $spnb + "/" + $spnhost + ":80 " + $user
 Invoke-Expression $Command
+
+#Create user for AS-REP Roasting honey account
+New-ADUser -Name $user2 -GivenName "Winnie" -Surname "TP" -SamAccountName $user2 -Path "CN=Users,DC=miratime,DC=org" -AccountPassword $secPw -Enabled $true -ChangePasswordAtLogon $false | Set-ADAccountControl -DoesNotRequirePreAuth $true
