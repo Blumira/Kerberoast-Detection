@@ -72,4 +72,6 @@ $Command = "setspn -A " + $spnb + "/" + $spnhost + ":80 " + $user
 Invoke-Expression $Command
 
 #Create user for AS-REP Roasting honey account
-New-ADUser -Name $user2 -GivenName "Winnie" -Surname "TP" -SamAccountName $user2 -AccountPassword $secPw -Enabled $true -ChangePasswordAtLogon $false | Set-ADAccountControl -DoesNotRequirePreAuth $true
+New-ADUser -Name $user2 -GivenName "Winnie" -Surname "TP" -SamAccountName $user2 -AccountPassword $secPw -Enabled $true -ChangePasswordAtLogon $false 
+# Disable Pre-auth on new user
+Get-ADUser $user2 | Set-ADAccountControl -DoesNotRequirePreAuth $true
