@@ -73,6 +73,6 @@ Invoke-Expression $Command
 
 #Create user for AS-REP Roasting honey account
 New-ADUser  -UserPrincipalName $user2 -Name $user2 -GivenName "Winnie" -Surname "TP" -SamAccountName $user2 -AccountPassword $secPw -Enabled $true -ChangePasswordAtLogon $false
-Set-ADAccountControl  -Identity $user -DoesNotRequirePreAuth $true
+Set-ADAccountControl  -Identity $user2 -DoesNotRequirePreAuth $true
 
 echo $user $user2 created
