@@ -67,9 +67,12 @@ $password = [System.Web.Security.Membership]::GeneratePassword($length, $nonAlph
 $secPw = ConvertTo-SecureString -String $password -AsPlainText -Force
 
 #Create the user
-New-ADUser -SamAccountName $user -Name $user -AccountPassword $secPw -Enabled 1
+New-ADUser  -UserPrincipalName $user  -SamAccountName $user -Name $user -AccountPassword $secPw -Enabled 1
 $Command = "setspn -A " + $spnb + "/" + $spnhost + ":80 " + $user
 Invoke-Expression $Command
 
 #Create user for AS-REP Roasting honey account
-New-ADUser -Name $user2 -GivenName "Winnie" -Surname "TP" -SamAccountName $user2 -AccountPassword $secPw -Enabled $true -ChangePasswordAtLogon $false | Set-ADAccountControl -DoesNotRequirePreAuth $true
+New-ADUser  -UserPrincipalName $user2 -Name $user2 -GivenName "Winnie" -Surname "TP" -SamAccountName $user2 -AccountPassword $secPw -Enabled $true -ChangePasswordAtLogon $false
+Set-ADAccountControl  -Identity $user2 -DoesNotRequirePreAuth $true
+
+echo $user $user2 created
