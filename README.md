@@ -1,5 +1,10 @@
 
-Automation for creating a Kerberos service account honey credential:
+This script serves 2 purposes:
+1. Automation for creating a Kerberos service account honey credential.
+2. Automation for creating an account with pre-authentication enabled as a second honey account to detect AS-REP Roasting.
+
+
+# Kerberoasting:
 
 Threat actors can abuse the kerberos protocol to recover passwords related to service accounts using a tactic called Kerberoasting
 
@@ -10,9 +15,10 @@ the SPN.
 
 In order to avoid false positive detections you can create a service account honeypot to detect Kerberoasting:
 
-Requirements:
-- Generate SPN artifacts for the purpose of detecting kerberoasting in otherwise noisy environments
-	
+## Purpose:
+Generate SPN artifacts for the purpose of detecting kerberoasting in otherwise noisy environments
+
+## Requirements:
 - This powershell script should be executed by a user account with privledges for creating Active directory accounts and SPN's
 	
 - Auditing of Kerberos Service Ticket Operations must be enabled
@@ -23,7 +29,25 @@ Requirements:
     - Ticket options: 0x40810000
     - SPN Name: <Name of your honeycred / SPN name>
 
-Usage:
+# AS-Rep Roasting:
+
+AS-REP Roasting is an attack against Kerberos for user accounts that do not require pre-authentication. Pre-authentication is the first step in Kerberos authentication, and is designed to prevent brute-force password guessing attacks.
+
+## Purpose:
+Generate an account without pre-authentication for the purpose of detecting as-rep roasting in otherwise noisy environments
+
+## Requirements:
+- This powershell script should be executed by a user account with privledges for creating Active directory accounts and SPN's
+	
+- Auditing of Kerberos Service Ticket Operations must be enabled
+    
+- An alerting mechanism (like Blumira clould SIEM) that will generate alerts related to matches of the following
+    - Event ID: 4768
+    - Encryption type: 0x17
+    - Ticket options: 0x40800010
+    - Account Name: < Name of your honeycred >
+
+# Usage:
 	
   From an administrative powershell command prompt 
   
