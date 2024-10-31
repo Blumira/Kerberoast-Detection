@@ -123,7 +123,7 @@ try {
     $password = [System.Web.Security.Membership]::GeneratePassword($length, $nonAlphaChars)
     $secPw = ConvertTo-SecureString -String $password -AsPlainText -Force
 
-    #Create the first honepot account
+    #Create the first honeypot account
     New-ADUser -UserPrincipalName $user -SamAccountName $user -Name $user -AccountPassword $secPw -Enabled 1
     Write-Host "[INFO] Created user $user" -ForegroundColor Yellow
     Add-ADGroupMember -Identity "Domain Guests" -Members $user
