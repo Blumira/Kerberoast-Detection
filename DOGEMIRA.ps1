@@ -126,6 +126,8 @@ try {
     #Create the first honeypot account
     New-ADUser -UserPrincipalName $user -SamAccountName $user -Name $user -AccountPassword $secPw -Enabled 1
     Write-Host "[INFO] Created user $user" -ForegroundColor Yellow
+    Set-ADUser -Identity $user -PasswordNeverExpires $true
+    Write-Host "[INFO] Disabled password expiration for $user" -ForegroundColor Yellow
     Add-ADGroupMember -Identity "Domain Guests" -Members $user
     $guestGroupID = (Get-ADGroup "Domain Guests" -Properties primaryGroupToken).primaryGroupToken
     Set-ADUser -Identity $user -Replace @{primaryGroupID=$guestGroupID}
@@ -144,6 +146,8 @@ try {
     New-ADUser -UserPrincipalName $user2 -Name $user2 -GivenName "Winnie" -Surname "TP" -SamAccountName $user2 -AccountPassword $secPw -Enabled $true -ChangePasswordAtLogon $false
     Set-ADAccountControl -Identity $user2 -DoesNotRequirePreAuth $true
     Write-Host "[INFO] Created user $user2" -ForegroundColor Yellow
+    Set-ADUser -Identity $user2 -PasswordNeverExpires $true
+    Write-Host "[INFO] Disabled password expiration for $user2" -ForegroundColor Yellow
     Add-ADGroupMember -Identity "Domain Guests" -Members $user2
     $guestGroupID = (Get-ADGroup "Domain Guests" -Properties primaryGroupToken).primaryGroupToken
     Set-ADUser -Identity $user2 -Replace @{primaryGroupID=$guestGroupID}
